@@ -3,8 +3,15 @@ import { Button, Row, Col } from "antd";
 import useStore from "../../store/store";
 
 const Stopwatch = () => {
-  const { time, isRunning, startTimer, stopTimer, resetTimer, incrementTime } =
-    useStore();
+  const {
+    time,
+    isRunning,
+    elapsedSeconds,
+    startTimer,
+    stopTimer,
+    resetTimer,
+    incrementTime,
+  } = useStore();
 
   useEffect(() => {
     let interval = null;
@@ -23,6 +30,7 @@ const Stopwatch = () => {
       <h1>Solative Test</h1>
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <h1>{time}s</h1>
+        {elapsedSeconds > 0 && <h3>Elapsed Time: {elapsedSeconds}s</h3>}
         <Row justify="center" gutter={[16, 16]}>
           <Col>
             <Button type="primary" onClick={startTimer}>
